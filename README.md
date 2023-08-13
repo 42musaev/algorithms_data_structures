@@ -3,7 +3,7 @@
 ## Algorithms
 
 - [binary search](algorithms/binary_search)
-
+- [sort selection](algorithms/sort_selection)
 
 ## Structures
 - [linked list](structures/linked_list)
