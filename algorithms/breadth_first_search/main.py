@@ -44,15 +44,16 @@ graph = {
 def find_mango_seller(tree: Dict) -> Dict | False:
     que = deque()
     que += [tree]
+    searched = []
 
     while que:
         person = que.popleft()
-        if person.get('seller_mango'):
-            return person['name']
-        friends = person.get('friends')
-        if friends:
-            que += friends
-    return False
+        if not person in searched:
+            if person.get('seller_mango'):
+                return person['name'] + f'. mango seller: {person["seller_mango"]}'
+            else:
+                que += person['friends']
+                searched.append(person)
 
 
 print(find_mango_seller(graph))
