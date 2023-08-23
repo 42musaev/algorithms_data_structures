@@ -8,6 +8,7 @@
 - [quick sort](algorithms/quick_sort)
 - [breadth-first search](algorithms/breadth_first_search)
 - [depth_first_search](algorithms/depth_first_search)
+- [dijkstra](algorithms/dijkstra)
 
 ## Structures
 - [linked list](structures/linked_list)
