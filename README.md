@@ -6,8 +6,8 @@
 - [sort selection](algorithms/sort_selection)
 - [recursion(recursion(∞))](algorithms/recursion)
 - [quick sort](algorithms/quick_sort)
-- [breadth-first search](algorithms/breadth_first_search)
-- [depth_first_search](algorithms/depth_first_search)
+- [breadth first search](algorithms/breadth_first_search)
+- [depth first search](algorithms/depth_first_search)
 - [dijkstra](algorithms/dijkstra)
 
 ## Structures
