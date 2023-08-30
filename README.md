@@ -9,6 +9,7 @@
 - [breadth first search](algorithms/breadth_first_search)
 - [depth first search](algorithms/depth_first_search)
 - [dijkstra](algorithms/dijkstra)
+- [greedy algorithm](algorithms/greedy_algorithm)
 
 ## Structures
 - [linked list](structures/linked_list)
