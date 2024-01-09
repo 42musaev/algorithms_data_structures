@@ -1,0 +1,1 @@
+A stack is an abstract data type representing a list of elements organized according to the LIFO principle. Most often the principle of stack operation is compared to a stack of plates: to take the second one from the top, you need to remove the top one.
