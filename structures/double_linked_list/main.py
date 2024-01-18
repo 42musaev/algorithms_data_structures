@@ -1,71 +1,89 @@
-from typing import Any
+from typing import Any, Optional
 
 
 class DoubleLinkedList:
-    head = None
-    tail = None
-
     class Node:
-        pre_node = None
-        next_node = None
-        element = None
-
-        def __str__(self):
-            return f'{self.element}'
-
-        def __init__(self, element: Any, pre_node=None, next_node=None) -> None:
-            self.element = element
+        def __init__(
+                self,
+                value: Any,
+                pre_node: "Node" = None,
+                next_node: "Node" = None
+        ) -> None:
+            self.value = value
             self.pre_node = pre_node
             self.next_node = next_node
 
-    def __str__(self) -> str:
-        node = self.head
-        pattern = '['
-        if not node:
-            return '[]'
-        if node and not node.next_node:
-            return f'[{node.element}]'
-        while node.next_node:
-            pattern += str(node.element) + ', '
-            node = node.next_node
-        pattern += f'{node.element}]'
-        return pattern
+        def __str__(self):
+            return str(self.value)
 
-    def __iter__(self):
-        node = self.head
-        while node:
-            yield node.element
-            node = node.next_node
+    def __init__(self) -> None:
+        self.head = None
+        self.tail = None
+        self._size = 0
 
-    def __getitem__(self, item: int) -> Any:
-        i = 0
-        node = self.head
-        while i < item:
-            node = node.next_node
-            i += 1
-        if not node:
-            raise IndexError('list index out of range')
-        return node
+    def __str__(self):
+        result = ""
+        current_node = self.head
+        while current_node:
+            result += str(current_node.value)
+            if current_node.next_node:
+                result += ", "
+            current_node = current_node.next_node
 
-    def append(self, element):
+        return "[" + result + "]"
+
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    def size(self, value: int):
+        self._size = value
+
+    def append(self, value: Any) -> None:
         if not self.head:
-            self.head = self.Node(element)
-            return element
-        elif not self.tail:
-            self.tail = self.Node(element, self.head, None)
-            self.head.next_node = self.tail
-        else:
-            self.tail = self.Node(element, self.tail, None)
-            self.tail.pre_node.next_node = self.tail
-            return element
+            self.head = self.tail = self.Node(value)
+            self.size += 1
+            return
+        current_node = self.head
+        while current_node.next_node:
+            current_node = current_node.next_node
+        current_node.next_node = self.Node(value)
+        self.tail = current_node.next_node
+        self.tail.pre_node = current_node
+        self.size += 1
+
+    def prepend(self, value: Any) -> None:
+        if not self.head:
+            self.head = self.tail = self.Node(value)
+            self.size += 1
+            return
+        current_node = self.Node(value)
+        current_node.next_node = self.head
+        self.head.pre_node = current_node
+        self.head = current_node
+        self.size += 1
+
+    def remove_first(self) -> None:
+        if self.head:
+            next_node = self.head.next_node
+            self.head = next_node
+            self.head.pre_node = None
+
+    def remove_last(self) -> None:
+        if self.tail:
+            pre_node = self.tail.pre_node
+            self.tail = pre_node
+            self.tail.next_node = None
 
 
-a = DoubleLinkedList()
-a.append(1)
-a.append(2)
-a.append(3)
-a.append(4)
-a.append(5)
-for i in a:
-    print(i)
-print(a)
+l = DoubleLinkedList()
+for i in range(6):
+    l.append(i)
+l.prepend('a')
+l.prepend('a')
+l.append('c')
+l.append('c')
+l.remove_first()
+l.remove_last()
+print(l)
